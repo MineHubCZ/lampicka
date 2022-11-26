@@ -1,39 +1,27 @@
 <script lang="ts">
-  import Greet from './lib/Greet.svelte'
+    import Profile from "./lib/Profile.svelte";
+    import { invoke } from "@tauri-apps/api/tauri";
+    let profile = 1;
+
+    function handleClick(curent_profile) {
+        profile = curent_profile;
+    }
+
+    invoke("send").then(() => {});
 </script>
 
-<main class="container">
-  <h1>Welcome to Tauri!</h1>
-
-  <div class="row">
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo vite" alt="Vite Logo" />
-    </a>
-    <a href="https://tauri.app" target="_blank">
-      <img src="/tauri.svg" class="logo tauri" alt="Tauri Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank">
-      <img src="/svelte.svg" class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div>
-
-  <p>
-    Click on the Tauri, Vite, and Svelte logos to learn more.
-  </p>
-
-  <div class="row">
-    <Greet />
-  </div>
-
-
+<main class="bg-white w-screen h-screen p-5 text-primary flex flex-col">
+    <div class="grid grid-cols-5 gap-4">
+        {#each [1, 2, 3, 4, 5] as curent_profile}
+            <div 
+                class="border-2 border-primary p-2 transition ease-in-out shadow-xl {profile == curent_profile ? 'text-white bg-primary' : 'hover:bg-primary hover:text-white'}"
+                on:click={() => handleClick(curent_profile)}
+            >
+                Profil {curent_profile}
+            </div>
+        {/each}
+    </div>
+    <Profile profile={profile} />
+    
 </main>
 
-<style>
-  .logo.vite:hover {
-    filter: drop-shadow(0 0 2em #747bff);
-  }
-
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00);
-  }
-</style>
