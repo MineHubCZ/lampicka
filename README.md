@@ -1,7 +1,7 @@
-# Tauri + Svelte + Typescript
+# Lampicka
 
-This template should help get you started developing with Tauri, Svelte and TypeScript in Vite.
+tauri-based app for configuring arduino-based light 
 
 ## Recommended IDE Setup
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer).
+[Neovim](https://neovim.io/) + [Svelte](https://github.com/evanleck/vim-svelte) + some plugin for rust, ts and html.
