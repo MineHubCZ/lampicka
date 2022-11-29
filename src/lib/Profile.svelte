@@ -12,7 +12,7 @@
     export let profile;
     let config = "";
     async function send() {
-        await invoke("send", { config })
+        await invoke("write", { config })
     }
 </script>
 
