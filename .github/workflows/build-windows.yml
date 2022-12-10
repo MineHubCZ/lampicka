@@ -12,7 +12,22 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - uses: tauri-apps/tauri-action@v0
+        
+      - name: Rust setup
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Sync node version and setup cache
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+          cache: 'yarn' 
+
+      - name: Install app dependencies and build web
+        run: yarn && yarn build
+
+      
+      - name: Build
+        uses: tauri-apps/tauri-action@v0
       
 
         env:
