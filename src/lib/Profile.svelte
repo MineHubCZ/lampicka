@@ -17,8 +17,5 @@
 </script>
 
 <div class="border-2 border-primary w-full h-screen mt-3 p-5 flex justify-center">
-    <div>
-        <input type="text" bind:value={config} class="border-2 border-primary">
-        <button on:click={send}>Send</button>
-    </div>
+
 </div>
