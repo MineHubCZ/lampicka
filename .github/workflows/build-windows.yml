@@ -1,0 +1,14 @@
+name: Windows build
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - run: yarn
+      - run: yarn tauri build
