@@ -36,9 +36,11 @@ fn scan() -> Option<Box<dyn SerialPort>> {
         thread::sleep(Duration::from_millis(1000));
 
         let mut result = vec![0; 32];
-       
-        if port.read(result.as_mut_slice()).is_err() {
-            println!("A A A MAME TU ERROR");
+      
+        let reading = port.read(result.as_mut_slice());
+
+        if reading.is_err() {
+            println!("{:?}", reading);
             continue;
         }
         
