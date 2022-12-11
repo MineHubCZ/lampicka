@@ -7,7 +7,7 @@
     windows_subsystem = "windows"
 )]
 
-use std::{time::Duration, io::Write};
+use std::{time::Duration, io::Write, thread};
 
 use serialport::SerialPort;
 
@@ -18,7 +18,7 @@ fn scan() -> Option<Box<dyn SerialPort>> {
     for p in ports {
         println!("PORT: {}", p.port_name);
         let raw_port = serialport::new(p.port_name.as_str(), 115_200)
-            .timeout(Duration::from_millis(10))
+            .timeout(Duration::from_millis(2000))
             .open()
         ;
 
@@ -32,8 +32,13 @@ fn scan() -> Option<Box<dyn SerialPort>> {
         port
             .write("csmenor".as_bytes()).expect("Unable to write to port")
         ;
+
+        thread::sleep(Duration::from_millis(1000));
+
         let mut result = vec![0; 32];
+       
         if port.read(result.as_mut_slice()).is_err() {
+            println!("A A A MAME TU ERROR");
             continue;
         }
         
