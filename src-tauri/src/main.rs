@@ -7,20 +7,23 @@
     windows_subsystem = "windows"
 )]
 
-use std::{time::Duration, fs::File, io::Write};
+use std::{time::Duration, io::Write};
 
 use serialport::SerialPort;
 
 fn scan() -> Option<Box<dyn SerialPort>> {
     // TODO return None instead of .expect()
     let ports = serialport::available_ports().expect("No ports found!");
+    println!("PORTS: {}", ports);
     for p in ports {
+        println!("PORT: {}", p.port_name);
         let raw_port = serialport::new(p.port_name.as_str(), 115_200)
             .timeout(Duration::from_millis(10))
             .open()
         ;
 
         if raw_port.is_err() {
+            println!("ERROR");
             continue;
         }
 
@@ -37,6 +40,8 @@ fn scan() -> Option<Box<dyn SerialPort>> {
         if String::from_utf8(result).expect("menor cos to poslal") == "csmoravak" {
             return Some(port);
         }
+
+        println!("{}", String::from_utf8(result));
     }
     return None;
 }
