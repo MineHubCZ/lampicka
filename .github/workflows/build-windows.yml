@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - uses: tauri-apps/tauri-action@v0
-      
+        includeDebug: true      
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
