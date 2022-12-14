@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 27.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Vrstva_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
 <style type="text/css">
@@ -43,7 +41,7 @@
 	</g>
 	<path class="st2" d="M269.6,292.3c-4.9-4.4-8.9-2.6-8.9,4L260.6,794c0,6.6-3.8,8.1-8.4,3.4l-90-91.6c-4.6-4.7-8.4-13.9-8.4-20.5
 		V158.2c0-6.6,5.4-12,12-12h82.9c6.6,0,15.9,3.6,20.8,8.1l212.1,195c4.9,4.5,12.4,4.1,16.8-0.8l171.8-193.3c4.4-4.9,13.3-9,19.9-9
-		H815c6.6,0,8.2,3.8,3.6,8.6L498.8,482c-4.6,4.7-12.4,5-17.3,0.6L269.6,292.3z"
+        H815c6.6,0,8.2,3.8,3.6,8.6L498.8,482c-4.6,4.7-12.4,5-17.3,0.6L269.6,292.3z"
     />
 </g>
 <g id="Vrstva_3">

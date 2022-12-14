@@ -3,6 +3,7 @@
     import Loading from "./lib/Loading.svelte";
     import Error from "./lib/Error.svelte";
     import Main from "./lib/Main.svelte";
+    import Wireframe from "./lib/Wireframes/Default.svelte";
 
     let component = Loading;
 
@@ -15,10 +16,11 @@
         ;
     }
 
-    setTimeout(() => load(), 1);
+//    setTimeout(() => load(), 1);
 </script>
 
 <main class="bg-white w-screen h-screen p-5 text-primary flex flex-col">
-    <svelte:component this={component} />
+    <!--svelte:component this={component} /-->
+    <Wireframe></Wireframe>
 </main>
 
