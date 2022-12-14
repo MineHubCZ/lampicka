@@ -14,16 +14,13 @@ use serialport::SerialPort;
 fn scan() -> Option<Box<dyn SerialPort>> {
     // TODO return None instead of .expect()
     let ports = serialport::available_ports().expect("No ports found!");
-    println!("PORTS: {:?}", ports);
     for p in ports {
-        println!("PORT: {}", p.port_name);
         let raw_port = serialport::new(p.port_name.as_str(), 115_200)
             .timeout(Duration::from_millis(2000))
             .open()
         ;
 
         if raw_port.is_err() {
-            println!("ERROR");
             continue;
         }
 
@@ -40,7 +37,6 @@ fn scan() -> Option<Box<dyn SerialPort>> {
         let reading = port.read(result.as_mut_slice());
 
         if reading.is_err() {
-            println!("{:?}", reading);
             continue;
         }
         
@@ -80,7 +76,7 @@ fn connect() -> Option<Vec<String>> {
     let mut port = raw_port.unwrap();
     let mut result: Vec<String> = Vec::new();
     for _ in [1..5] {
-        let mut curent = vec![0; 32];
+        let mut curent = vec![0; 64];
         port.read(curent.as_mut_slice()).expect("Unable to read");
         result.push(String::from_utf8(curent).expect("menor cos to poslal"));
     }
