@@ -67,21 +67,10 @@ fn write(setting: String) -> bool {
 }
 
 #[tauri::command]
-fn connect() -> Option<Vec<String>> {
+fn connect() -> bool {
     let raw_port = scan();
-    if raw_port.is_none() {
-        return None;
-    }
 
-    let mut port = raw_port.unwrap();
-    let mut result: Vec<String> = Vec::new();
-    for _ in [1..5] {
-        let mut curent = vec![0; 64];
-        port.read(curent.as_mut_slice()).expect("Unable to read");
-        result.push(String::from_utf8(curent).expect("menor cos to poslal"));
-    }
-
-    return Some(result);
+    return raw_port.is_some();
 }
 
 fn main() {

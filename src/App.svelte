@@ -9,7 +9,7 @@
     async function load() {
         let profiles = await invoke("connect");
         component = 
-            profiles == null 
+            profiles
             ? Error
             : Main
         ;
