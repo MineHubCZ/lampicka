@@ -57,11 +57,6 @@ fn write(setting: String) -> bool {
 
     let mut port = raw_port.unwrap();
 
-    for _ in [1..5] {
-        let mut curent = vec![0; 32];
-        port.read(curent.as_mut_slice()).expect("Unable to read");
-    }
-
     port.write(setting.as_bytes()).expect("Unable to write");
     return true;
 }
