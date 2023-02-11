@@ -16,6 +16,7 @@ fn scan() -> Option<Box<dyn SerialPort>> {
     let ports = serialport::available_ports().expect("No ports found!");
     println!("{:?}", ports);
     for p in ports {
+        println!("{}", p.port_name);
         let raw_port = serialport::new(p.port_name.as_str(), 9600)
             .timeout(Duration::from_millis(2000))
             .open()
@@ -42,8 +43,11 @@ fn scan() -> Option<Box<dyn SerialPort>> {
             println!("AHA JE ERROR PRI POKUSU O CTENI");
             continue;
         }
-        
-        if String::from_utf8(result).expect("menor cos to poslal") == "csmoravak" {
+       
+        let message = String::from_utf8(result).expect("menor cos to poslal");
+        println!("{:?}", message);
+
+        if message == "csmoravak" {
             println!("tak sem curak no");
             return Some(port);
         }
