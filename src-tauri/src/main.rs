@@ -16,13 +16,13 @@ fn scan() -> Option<Box<dyn SerialPort>> {
     let ports = serialport::available_ports().expect("No ports found!");
     println!("{:?}", ports);
     for p in ports {
-        let raw_port = serialport::new(p.port_name.as_str(), 115_200)
+        let raw_port = serialport::new(p.port_name.as_str(), 9600)
             .timeout(Duration::from_millis(2000))
             .open()
         ;
 
         if raw_port.is_err() {
-            println!("AHA JE ERROR PRI HLEDANI PORTU!!!");
+            println!("AHA JE ERROR PRI HLEDANI PORTU!!! {:?}", raw_port.err());
             continue;
         }
 
