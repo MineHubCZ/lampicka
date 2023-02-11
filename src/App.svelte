@@ -10,8 +10,8 @@
         let profiles = await invoke("connect");
         component = 
             profiles
-            ? Error
-            : Main
+            ? Main
+            : Error
         ;
     }
 

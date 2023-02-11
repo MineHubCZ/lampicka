@@ -14,6 +14,7 @@ use serialport::SerialPort;
 fn scan() -> Option<Box<dyn SerialPort>> {
     // TODO return None instead of .expect()
     let ports = serialport::available_ports().expect("No ports found!");
+    println!("{:?}", ports);
     for p in ports {
         let raw_port = serialport::new(p.port_name.as_str(), 115_200)
             .timeout(Duration::from_millis(2000))
@@ -21,6 +22,7 @@ fn scan() -> Option<Box<dyn SerialPort>> {
         ;
 
         if raw_port.is_err() {
+            println!("AHA JE ERROR PRI HLEDANI PORTU!!!");
             continue;
         }
 
@@ -37,13 +39,14 @@ fn scan() -> Option<Box<dyn SerialPort>> {
         let reading = port.read(result.as_mut_slice());
 
         if reading.is_err() {
+            println!("AHA JE ERROR PRI POKUSU O CTENI");
             continue;
         }
         
         if String::from_utf8(result).expect("menor cos to poslal") == "csmoravak" {
+            println!("tak sem curak no");
             return Some(port);
         }
-
     }
     return None;
 }
@@ -51,7 +54,7 @@ fn scan() -> Option<Box<dyn SerialPort>> {
 #[tauri::command]
 fn write(setting: String) -> bool {
     let raw_port = scan();
-    if raw_port.is_some() {
+    if raw_port.is_none() {
         return false;
     }
 
