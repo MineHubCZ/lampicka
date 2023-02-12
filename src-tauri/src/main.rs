@@ -35,7 +35,7 @@ fn scan() -> Option<Box<dyn SerialPort>> {
 
         thread::sleep(Duration::from_millis(1000));
 
-        let mut result = vec![0; 32];
+        let mut result = vec![0; 9];
       
         let reading = port.read(result.as_mut_slice());
 
