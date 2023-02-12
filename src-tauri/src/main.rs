@@ -57,8 +57,10 @@ fn scan() -> Option<Box<dyn SerialPort>> {
 
 #[tauri::command]
 fn write(setting: String) -> bool {
+    println!("WRITE SE PUSTI!!!!");
     let raw_port = scan();
     if raw_port.is_none() {
+        println!("AHA ALE NEPRIPOJILI JSME SE TO JE SPATNY");
         return false;
     }
 

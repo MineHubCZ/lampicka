@@ -12,7 +12,10 @@
     export let profile;
     let config = "";
     async function send() {
-        await invoke("write", { config })
+        let result = await invoke("write", { config })
+        if (!result) {
+            alert("prcarna");
+        }
     }
 </script>
 
