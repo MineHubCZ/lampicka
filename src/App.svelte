@@ -13,6 +13,8 @@
             ? Main
             : Error
         ;
+
+        alert(profiles);
     }
 
     setTimeout(() => load(), 1);

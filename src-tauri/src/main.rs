@@ -71,10 +71,34 @@ fn write(setting: String) -> bool {
 }
 
 #[tauri::command]
-fn connect() -> bool {
+fn connect() -> Option<Vec<String>> {
     let raw_port = scan();
 
-    return raw_port.is_some();
+    if raw_port.is_none() {
+        return None;
+    }
+
+    let mut port = raw_port.unwrap();
+
+    if port.write("profiles".as_bytes()).is_err() {
+        return None;
+    }
+
+    let mut result: Vec<String> = Vec::new();
+
+    for _ in 0..=5 {
+        let mut buffer = vec![0; 100];
+        if port.read(&mut buffer).is_err() {
+            return None;
+        }
+        if let Ok(profile) = String::from_utf8(buffer) {
+            result.push(profile.trim_matches('\0').to_string());
+        } else {
+            return None;
+        }
+    }
+   
+    Some(result)
 }
 
 fn main() {
