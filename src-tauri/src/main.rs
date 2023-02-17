@@ -87,8 +87,8 @@ fn connect() -> Option<Vec<String>> {
 
     for i in 0..=5 {
         let mut buffer = vec![0; 100];
-        if port.read(&mut buffer).is_err() {
-            println!("pokus o cteni profilu {} minus", i);
+        if let Err(e) = port.read(&mut buffer) {
+            println!("pokus o cteni profilu {} minus: {:?}", i, e);
             return None;
         }
         if let Ok(profile) = String::from_utf8(buffer) {
