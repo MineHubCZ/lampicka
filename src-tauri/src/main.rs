@@ -17,7 +17,7 @@ fn scan() -> Option<Box<dyn SerialPort>> {
     for p in ports {
         println!("[LOG] Scanning port {}", p.port_name);
         let raw_port = serialport::new(p.port_name.as_str(), 9600)
-            .timeout(Duration::from_millis(2000))
+            .timeout(Duration::from_millis(20000))
             .open()
         ;
 
