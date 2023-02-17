@@ -12,25 +12,24 @@ use std::{time::Duration, io::Write, thread};
 use serialport::SerialPort;
 
 fn scan() -> Option<Box<dyn SerialPort>> {
-    // TODO return None instead of .expect()
     let ports = serialport::available_ports().expect("No ports found!");
-    println!("{:?}", ports);
+    println!("[LOG] Ports: {:?}", ports);
     for p in ports {
-        println!("{}", p.port_name);
+        println!("[LOG] Scanning port {}", p.port_name);
         let raw_port = serialport::new(p.port_name.as_str(), 9600)
             .timeout(Duration::from_millis(2000))
             .open()
         ;
 
         if raw_port.is_err() {
-            println!("AHA JE ERROR PRI HLEDANI PORTU!!! {:?}", raw_port.err());
+            println!("[LOG] There was an error: {:?}", raw_port.err());
             continue;
         }
 
         let mut port = raw_port.unwrap();
 
         port
-            .write("csmenor".as_bytes()).expect("Unable to write to port")
+            .write("csmenor".as_bytes()).expect("[LOG] Unable to write to port")
         ;
 
         thread::sleep(Duration::from_millis(1000));
@@ -40,33 +39,32 @@ fn scan() -> Option<Box<dyn SerialPort>> {
         let reading = port.read(result.as_mut_slice());
 
         if reading.is_err() {
-            println!("AHA JE ERROR PRI POKUSU O CTENI");
+            println!("[LOG] Error while reading {:?}", reading.err());
             continue;
         }
        
-        let message = String::from_utf8(result).expect("menor cos to poslal");
-        println!("{:?}", message);
+        let message = String::from_utf8(result).expect("[LOG] Menor poslal nejakou bejkarnu");
 
         if message == "csmoravak" {
-            println!("tak sem curak no");
             return Some(port);
         }
     }
+
+    println!("[LOG] Unable to connect");
     return None;
 }
 
 #[tauri::command]
 fn write(setting: String) -> bool {
-    println!("WRITE SE PUSTI!!!!");
+    println!("[LOG] Starting to write");
     let raw_port = scan();
     if raw_port.is_none() {
-        println!("AHA ALE NEPRIPOJILI JSME SE TO JE SPATNY");
         return false;
     }
 
     let mut port = raw_port.unwrap();
 
-    port.write(setting.as_bytes()).expect("Unable to write");
+    port.write(setting.as_bytes()).expect("[LOG] Unable to write");
     return true;
 }
 
@@ -81,19 +79,22 @@ fn connect() -> Option<Vec<String>> {
     let mut port = raw_port.unwrap();
 
     if port.write("profiles".as_bytes()).is_err() {
+        println!("pokus o cteni profilu minus");
         return None;
     }
 
     let mut result: Vec<String> = Vec::new();
 
-    for _ in 0..=5 {
+    for i in 0..=5 {
         let mut buffer = vec![0; 100];
         if port.read(&mut buffer).is_err() {
+            println!("pokus o cteni profilu {} minus", i);
             return None;
         }
         if let Ok(profile) = String::from_utf8(buffer) {
             result.push(profile.trim_matches('\0').to_string());
         } else {
+            println!("pokus o parsovani profilu {} minus", i);
             return None;
         }
     }
