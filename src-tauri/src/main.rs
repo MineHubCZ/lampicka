@@ -7,7 +7,7 @@
     windows_subsystem = "windows"
 )]
 
-use std::{time::Duration, io::Write, thread};
+use std::{time::Duration, io::Write, thread, fmt::format};
 
 use serialport::SerialPort;
 
@@ -85,7 +85,11 @@ fn connect() -> Option<Vec<String>> {
 
     let mut result: Vec<String> = Vec::new();
 
-    for i in 0..=5 {
+    for i in 1..=5 {
+        if let Err(e) = port.write(format!("profile{}", i).as_bytes()) {
+            println!("neco se poparkovalo {:?}", e);
+            return None;
+        }
         let mut buffer = vec![0; 100];
         if let Err(e) = port.read(&mut buffer) {
             println!("pokus o cteni profilu {} minus: {:?}", i, e);
