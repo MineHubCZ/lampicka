@@ -78,11 +78,6 @@ fn connect() -> Option<Vec<String>> {
 
     let mut port = raw_port.unwrap();
 
-    if port.write("profiles".as_bytes()).is_err() {
-        println!("pokus o cteni profilu minus");
-        return None;
-    }
-
     let mut result: Vec<String> = Vec::new();
 
     for i in 1..=5 {
