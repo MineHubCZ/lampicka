@@ -65,6 +65,7 @@ fn write(setting: String) -> bool {
     let mut port = raw_port.unwrap();
 
     port.write(setting.as_bytes()).expect("[LOG] Unable to write");
+    drop(port);
     return true;
 }
 
@@ -97,7 +98,7 @@ fn connect() -> Option<Vec<String>> {
             return None;
         }
     }
-   
+    drop(port); 
     Some(result)
 }
 

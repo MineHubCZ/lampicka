@@ -1,10 +1,11 @@
 <script lang="ts">
     import Profile from "./Profile.svelte";
-    import { invoke } from "@tauri-apps/api/tauri";
-    let profile = 1;
 
-    function handleClick(curent_profile) {
-        profile = curent_profile;
+    export let profiles: [string];
+    let profile: string = profiles[0];
+
+    function handleClick(curent_profile: number) {
+        profile = profiles[curent_profile - 1];
     }
 </script>
 
