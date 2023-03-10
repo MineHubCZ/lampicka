@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button {
+    @apply shadow-lg p-2 border-2 border-primary transition ease-in-out shadow-xl;
+}
+
+.selected {
+    @apply text-white bg-primary
+}
+
+.unselected {
+    @apply hover:bg-primary hover:text-white;
+}
+
+.slide {
+    appearance: none;
+    @apply bg-primary rounded-full shadow-xl;
+    outline: none;
+}
+

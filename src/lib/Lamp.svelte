@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generator: Adobe Illustrator 27.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-
+<script>
+    export let top;
+    export let bottom;
+</script>
 <svg
    version="1.1"
    id="Vrstva_1"
@@ -34,7 +35,8 @@
    inkscape:window-x="1019"
    inkscape:window-y="738"
    inkscape:window-maximized="0"
-   inkscape:current-layer="Vrstva_1" />
+   inkscape:current-layer="Vrstva_1" 
+   />
 <style
    type="text/css"
    id="style2">
@@ -98,27 +100,6 @@
 		</g>
 	</g>
 </g>
-<g
-   id="Vrstva_2_00000068639540309316769050000003377542866050839450_"
-   transform="matrix(1.2481416,0,0,1.2481416,-114.72913,-105.16066)">
-	<g
-   id="Vrstva_1_00000165236326566489921610000009472640422387894949_">
-	</g>
-	<path
-   class="st2"
-   d="m 269.6,292.3 c -4.9,-4.4 -8.9,-2.6 -8.9,4 L 260.6,794 c 0,6.6 -3.8,8.1 -8.4,3.4 l -90,-91.6 c -4.6,-4.7 -8.4,-13.9 -8.4,-20.5 V 158.2 c 0,-6.6 5.4,-12 12,-12 h 82.9 c 6.6,0 15.9,3.6 20.8,8.1 l 212.1,195 c 4.9,4.5 12.4,4.1 16.8,-0.8 L 670.2,155.2 c 4.4,-4.9 13.3,-9 19.9,-9 H 815 c 6.6,0 8.2,3.8 3.6,8.6 L 498.8,482 c -4.6,4.7 -12.4,5 -17.3,0.6 z"
-   id="path32" />
-</g>
-<g
-   id="Vrstva_3"
-   transform="matrix(1.2481416,0,0,1.2481416,-114.72913,-105.16066)">
-	<g
-   id="Vrstva_2_00000068674944005382951290000011903351550368725390_"
-   class="st3">
-	</g>
-	<path
-   class="st2"
-   d="m 825.4,816.1 c 0,6.6 -5.4,12 -12,12 h -76.6 c -6.6,0 -12,-5.4 -12,-12 V 547.7 c 0,-6.6 -3.8,-8.2 -8.4,-3.5 L 496.5,767 c -4.6,4.7 -12.2,4.7 -16.8,0 L 351,637.5 c -4.7,-4.7 -8.4,-13.8 -8.4,-20.5 V 498 c 0,-6.6 3.8,-8.2 8.4,-3.5 L 479.6,624 c 4.7,4.7 12.2,4.7 16.8,0 L 817,298.3 c 4.6,-4.7 8.4,-3.2 8.4,3.4 z"
-   id="path36" />
-</g>
+<svelte:component this={top}/>
+<svelte:component this={bottom}/>
 </svg>

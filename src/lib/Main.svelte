@@ -1,23 +1,24 @@
 <script lang="ts">
     import Profile from "./Profile.svelte";
+    import type { Profile as ProfileInterface } from "src/profiles";
 
-    export let profiles: [string];
-    let profile: string = profiles[0];
-
-    function handleClick(curent_profile: number) {
-        profile = profiles[curent_profile - 1];
-    }
+    export let profiles: [ProfileInterface];
+    let profile = 1;
 </script>
-
-<div class="grid grid-cols-5 gap-4">
-    {#each [1, 2, 3, 4, 5] as curent_profile}
-        <div 
-            class="border-2 border-primary p-2 transition ease-in-out shadow-xl {profile == curent_profile ? 'text-white bg-primary' : 'hover:bg-primary hover:text-white'}"
-            on:click={() => handleClick(curent_profile)}
-        >
-            Profil {curent_profile}
+<div class="h-screen fixed w-screen top-0 left-0">
+    <div class="absolute top-0 left-0 w-full h-full p-5">
+        <div class="grid grid-cols-5 gap-5 mb-5">
+            {#each [1, 2, 3, 4, 5] as curent_profile}
+                <div 
+                   class="button shadow-xl 
+                    {profile == curent_profile ? 'selected' : 'unselected'}
+                    "
+                    on:click={() => profile = curent_profile}
+                >
+                    Profil {curent_profile}
+                </div>
+            {/each}
         </div>
-    {/each}
+        <Profile profile={profiles[profile]} />
+    </div>
 </div>
-<Profile profile={profile} />
-

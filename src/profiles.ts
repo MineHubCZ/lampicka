@@ -3,9 +3,9 @@ export interface Profile {
     mode1: string;
     brightness1: number;
     data1: string[];
-    mode2?: string;
-    brightness2?: number;
-    data2?: string[];
+    mode2: string;
+    brightness2: number;
+    data2: string[];
 }
 
 export function parse(profile: string): Profile {
