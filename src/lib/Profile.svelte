@@ -23,6 +23,8 @@
     let top = profile.mode1;
     let bottom = profile.mode2;
 
+    let topColor = "#ffffff";
+
     const modes = {
         "top": [
             ["Statický", Static],
@@ -50,10 +52,10 @@
     }
 
     function hasSpeed(mode) {
-        return [StaticB, Static].includes(mode);
+        return ![StaticB, Static].includes(mode);
     }
 </script>
-
+<input type="color" id="color1" class="hidden-picker" bind:value={topColor}>
 <div class="border-2 border-primary flex p-5 h-full gap-16 justify-center items-center">
     <div class="grid grid-cols-2 gap-4">
         <div>
@@ -72,12 +74,12 @@
                 jas
                 <input type="range" class="slide">
             </div>
-            <div class="flex flex-col">
-                {#if hasSpeed(top)}
+            {#if hasSpeed(top)}
+                <div class="flex flex-col">
                     rychlost
                     <input type="range" class="slide">
-                {/if}
-            </div>
+                </div>
+            {/if}
         </div>
         <div>
             Spodní zóna
@@ -95,17 +97,17 @@
                 jas
                 <input type="range" class="slide">
             </div>
-            <div class="flex flex-col">
-                {#if hasSpeed(bottom)}
+            {#if hasSpeed(bottom)}
+                <div class="flex flex-col">
                     rychlost
                     <input type="range" class="slide">
-                {/if}
-            </div>
+                </div>
+            {/if}
         </div>
         <div class="gap-4">
-            <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-2 gap-4">
             </div>
         </div>
     </div>
-    <div class="w-3/6 xl:w-2/6"><Lamp top={top} bottom={bottom}></Lamp></div>
+    <div class="w-3/6 xl:w-2/6"><Lamp top={top} bottom={bottom} topColor={topColor}></Lamp></div>
 </div>

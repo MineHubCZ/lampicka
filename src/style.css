@@ -20,3 +20,7 @@
     outline: none;
 }
 
+.hidden-picker {
+    position: absolute;
+    left: -1000px;
+}

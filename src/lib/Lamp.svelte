@@ -1,6 +1,7 @@
 <script>
     export let top;
     export let bottom;
+    export let topColor;
 </script>
 <svg
    version="1.1"
@@ -100,6 +101,6 @@
 		</g>
 	</g>
 </g>
-<svelte:component this={top}/>
+<svelte:component this={top} color={topColor}/>
 <svelte:component this={bottom}/>
 </svg>
