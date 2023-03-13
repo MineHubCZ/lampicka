@@ -24,6 +24,10 @@
     let bottom = profile.mode2;
 
     let topColor = "#ffffff";
+    let bottomColor = "#ffffff";
+
+    let topSpeed = 0;
+    let bottomSpeed = 0;
 
     const modes = {
         "top": [
@@ -56,6 +60,7 @@
     }
 </script>
 <input type="color" id="color1" class="hidden-picker" bind:value={topColor}>
+<input type="color" id="color2" class="hidden-picker" bind:value={bottomColor}>
 <div class="border-2 border-primary flex p-5 h-full gap-16 justify-center items-center">
     <div class="grid grid-cols-2 gap-4">
         <div>
@@ -77,7 +82,7 @@
             {#if hasSpeed(top)}
                 <div class="flex flex-col">
                     rychlost
-                    <input type="range" class="slide">
+                    <input type="range" class="slide" bind:value={topSpeed} min="1" max="255">
                 </div>
             {/if}
         </div>
@@ -100,7 +105,7 @@
             {#if hasSpeed(bottom)}
                 <div class="flex flex-col">
                     rychlost
-                    <input type="range" class="slide">
+                    <input type="range" class="slide" bind:value={bottomSpeed} min="1" max="255">
                 </div>
             {/if}
         </div>
@@ -109,5 +114,5 @@
             </div>
         </div>
     </div>
-    <div class="w-3/6 xl:w-2/6"><Lamp top={top} bottom={bottom} topColor={topColor}></Lamp></div>
+    <div class="w-3/6 xl:w-2/6"><Lamp top={top} bottom={bottom} topColor={topColor} bottomColor={bottomColor} topSpeed={topSpeed} bottomSpeed={bottomSpeed}></Lamp></div>
 </div>
