@@ -1,32 +1,72 @@
 export interface Profile {
     id: number;
-    mode1: string;
-    brightness1: number;
-    data1: string[];
-    mode2: string;
-    brightness2: number;
-    data2: string[];
+    mode1: Mode;
+    mode2: Mode;
+}
+
+export interface Mode {
+    mode: string;
+    brightness: number;
+    color?: string;
+    speed?: number;
+}
+
+export function hasSpeed(mode) {
+    return mode != "s";
+}
+
+export function hasColor(mode) {
+    return ["s", "w", "b"].includes(mode);
 }
 
 export function parse(profile: string): Profile {
-    let parts = profile.split(";");
-    let base = {
-            id: +parts[0],
-            mode1: parts[1],
-            brightness1: +parts[2],
-            data1: parts[3].split(','),
-            mode2: null,
-            brightness2: null,
-            data2: null,
-    };
-    
-    if (parts[1] == "a") {
-        return base;
+    let [id, mode1, brightness1, data1, mode2, brightness2, data2] = profile.split(";");
+    return {
+        id,
+        mode1: parseMode(mode1, brightness1, data1),
+        mode2: parseMode(mode2, brightness2, data2),
+    }
+}
+
+function parseMode(mode: string, brightness: number, data: string): Mode {
+    if (hasColor(mode) && hasSpeed(mode)) {
+        let tokens = data.split(',');
+        return {
+            mode,
+            brightness,
+            color: tokens[1],
+            speed: tokens[0],
+        };
     }
 
-    base.mode2 = parts[4];
-    base.brightness2 = parts[5];
-    base.data2 = parts[6].split(',');
+    if (hasColor(mode))  {
+        return {
+            mode,
+            brightness,
+            color: data,
+        };
+    }
 
-    return base;
+    if (hasSpeed(mode)) {
+        return {
+            mode,
+            brightness,
+            speed: data,
+        }
+    }
+}
+
+export function viceVersa(id: number, top: Mode, bottom: Mode): string {
+    return [id, exportMode(top), exportMode(bottom)].join(";");
+}
+
+export function exportMode(mode: Mode): string {
+    let data;
+    if (hasSpeed(mode) && hasColor(mode)) {
+        data = mode.speed + "," + mode.color;
+    } else {
+        data = mode.speed ?? mode.color;
+    }
+
+    return [mode.mode, mode.brightness, data].join(";");
 }

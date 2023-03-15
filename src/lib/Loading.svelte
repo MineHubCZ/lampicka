@@ -1,7 +1,6 @@
-<div class="flex justify-center items-center">
-    <div class="w-24 h-24">
-        <div class="animate-spin">
-            penis
-        </div>
+<div class="flex justify-center items-center h-screen flex-col">
+    tady bude nejaky nacitani asi
+    <div class="animate-bounce">
+        penis
     </div>
 </div>

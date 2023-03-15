@@ -19,6 +19,6 @@
                 </div>
             {/each}
         </div>
-        <Profile profile={profiles[profile]} />
+        <Profile top={profiles[profile - 1].mode1} bottom={profiles[profile - 1].mode2} id={profiles[profile - 1].id}/>
     </div>
 </div>
