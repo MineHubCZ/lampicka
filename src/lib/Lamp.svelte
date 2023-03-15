@@ -5,6 +5,8 @@
     export let bottomColor;
     export let topSpeed;
     export let bottomSpeed;
+    export let topBrightness;
+    export let bottomBrightness;
 </script>
 <svg
    version="1.1"
@@ -104,6 +106,6 @@
 		</g>
 	</g>
 </g>
-<svelte:component this={top} color={topColor} speed={topSpeed} />
-<svelte:component this={bottom} color={bottomColor} speed={bottomSpeed} />
+<g style="opacity: {topBrightness/255}"><svelte:component this={top} color={topColor} speed={topSpeed}/></g>
+<g style="opacity: {bottomBrightness/255}"><svelte:component this={bottom} color={bottomColor} speed={bottomSpeed} /></g>
 </svg>

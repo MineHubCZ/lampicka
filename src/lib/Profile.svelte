@@ -67,7 +67,7 @@
             </div>
             <div class="flex flex-col">
                 jas
-                <input type="range" class="slide">
+                <input type="range" class="slide" bind:value={top.brightness} min="0" max="255">
             </div>
             {#if hasSpeed(top.mode)}
                 <div class="flex flex-col">
@@ -90,7 +90,7 @@
             </div>
             <div class="flex flex-col">
                 jas
-                <input type="range" class="slide">
+                <input type="range" class="slide" bind:value={bottom.brightness} min="0" max="255">
             </div>
             {#if hasSpeed(bottom.mode)}
                 <div class="flex flex-col">
@@ -99,11 +99,13 @@
                 </div>
             {/if}
         </div>
-        <div class="gap-4">
-        <div class="grid grid-cols-2 gap-4">
-            </div>
-        </div>
+            {#if hasSpeed(bottom.mode) && hasSpeed(top.mode)}
+                <div class="flex flex-col">
+                    <button on:click={() => bottom.speed = top.speed} class="button unselected">Synchronizovat</button>
+                </div>
+            {/if}
+
     </div>
-    <div class="w-3/6 xl:w-2/6"><Lamp top={modes["top"][top.mode][1]} bottom={modes["bottom"][bottom.mode][1]} topColor={top.color} bottomColor={bottom.color} topSpeed={top.speed} bottomSpeed={bottom.speed}></Lamp></div>
-    <div class="bg-primary fixed bottom-0 right-0 m-8 text-white p-2" on:click={() => upload()}>Nahrat</div>
+    <div class="w-3/6 xl:w-2/6"><Lamp top={modes["top"][top.mode][1]} bottom={modes["bottom"][bottom.mode][1]} topColor={top.color} bottomColor={bottom.color} topSpeed={top.speed} bottomSpeed={bottom.speed} topBrightness={top.brightness} bottomBrightness={bottom.brightness}></Lamp></div>
+    <div class="button unselected fixed bottom-0 right-0 m-8" on:click={() => upload()}>Nahrat</div>
 </div>
