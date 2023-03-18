@@ -53,6 +53,7 @@ fn scan() -> Option<Box<dyn SerialPort>> {
         let message = String::from_utf8(result).expect("[LOG] Menor poslal nejakou bejkarnu");
 
         if message == "csmoravak" {
+            port.set_timeout(Duration::from_millis(10000)).expect("[LOG] Unable to set timeout");
             return Some(port);
         }
     }
