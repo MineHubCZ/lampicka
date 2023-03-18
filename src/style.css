@@ -19,8 +19,3 @@
     @apply bg-primary rounded-full shadow-xl;
     outline: none;
 }
-
-.hidden-picker {
-    position: absolute;
-    left: -1000px;
-}

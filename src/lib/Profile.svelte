@@ -1,6 +1,6 @@
 <script lang="ts">
     import { invoke } from "@tauri-apps/api/tauri";
-    import type {Profile} from "src/profiles";
+    import type {hasColor, Profile} from "src/profiles";
     import Lamp from "./Lamp.svelte";
     import Breathing from "./ModesTop/Breathing.svelte";
     import Rainbow from "./ModesTop/Rainbow.svelte";
@@ -17,12 +17,14 @@
     import RainbowWaveB from "./ModesBottom/RainbowWave.svelte";
     import StaticB from "./ModesBottom/Static.svelte";
     import WaveB from "./ModesBottom/Wave.svelte";
+	import ColorPicker from 'svelte-awesome-color-picker';
 
-    import { hasSpeed, viceVersa } from "/src/profiles";
+    import { hasSpeed, viceVersa, hasColor } from "/src/profiles";
 
     export let id;
     export let top;
     export let bottom;
+    export let hex;
 
     const modes = {
         "top": {
@@ -49,8 +51,6 @@
         let result = await invoke("write", { setting: viceVersa(id, top, bottom) })
     }
 </script>
-<input type="color" id="color1" class="hidden-picker" bind:value={top.color}>
-<input type="color" id="color2" class="hidden-picker" bind:value={bottom.color}>
 <div class="border-2 border-primary flex p-5 h-full gap-16 justify-center items-center">
     <div class="grid grid-cols-2 gap-4">
         <div>
@@ -104,8 +104,15 @@
                     <button on:click={() => bottom.speed = top.speed} class="button unselected">Synchronizovat</button>
                 </div>
             {/if}
-
     </div>
     <div class="w-3/6 xl:w-2/6"><Lamp top={modes["top"][top.mode][1]} bottom={modes["bottom"][bottom.mode][1]} topColor={top.color} bottomColor={bottom.color} topSpeed={top.speed} bottomSpeed={bottom.speed} topBrightness={top.brightness} bottomBrightness={bottom.brightness}></Lamp></div>
+    <div class="gap-4 flex flex-col">
+        {#if hasColor(top.mode)}
+            <ColorPicker bind:hex={top.color} label="Barva horni zony"/>
+        {/if}
+        {#if hasColor(bottom.mode)}
+            <ColorPicker bind:hex={bottom.color} label="Barva spodni zony"/>
+        {/if}
+    </div>
     <div class="button unselected fixed bottom-0 right-0 m-8" on:click={() => upload()}>Nahrat</div>
 </div>

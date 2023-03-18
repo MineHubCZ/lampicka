@@ -5,7 +5,6 @@
 <g
    id="Vrstva_3"
    transform="matrix(1.2481416,0,0,1.2481416,-114.72913,-105.16066)"
-   onclick="document.getElementById('color2').click()"
    >
     <g
    id="Vrstva_2_00000068674944005382951290000011903351550368725390_"
