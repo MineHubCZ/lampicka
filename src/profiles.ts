@@ -65,7 +65,7 @@ export function exportMode(mode: Mode): string {
     if (hasSpeed(mode) && hasColor(mode)) {
         data = mode.speed + "," + mode.color.replace("#", "");
     } else {
-        data = mode.speed ?? mode.color;
+        data = mode.speed ?? mode.color.replace("#", "");
     }
 
     return [mode.mode, mode.brightness, data].join(";");
