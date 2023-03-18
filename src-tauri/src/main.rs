@@ -16,8 +16,15 @@ fn scan() -> Option<Box<dyn SerialPort>> {
     println!("[LOG] Ports: {:?}", ports);
     for p in ports {
         println!("[LOG] Scanning port {}", p.port_name);
+        match p.port_type {
+            serialport::SerialPortType::UsbPort(_) => {},
+            _ => {
+                println!("[LOG] Not a USB port");
+                continue;
+            }
+        }
         let raw_port = serialport::new(p.port_name.as_str(), 9600)
-            .timeout(Duration::from_millis(20000))
+            .timeout(Duration::from_millis(50))
             .open()
         ;
 
@@ -32,7 +39,7 @@ fn scan() -> Option<Box<dyn SerialPort>> {
             .write("csmenor".as_bytes()).expect("[LOG] Unable to write to port")
         ;
 
-        thread::sleep(Duration::from_millis(1000));
+        thread::sleep(Duration::from_millis(10));
 
         let mut result = vec![0; 9];
       
