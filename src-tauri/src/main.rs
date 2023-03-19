@@ -24,7 +24,7 @@ fn scan() -> Option<Box<dyn SerialPort>> {
             }
         }
         let raw_port = serialport::new(p.port_name.as_str(), 9600)
-            .timeout(Duration::from_millis(50))
+            .timeout(Duration::from_millis(5000))
             .open()
         ;
 
@@ -53,7 +53,6 @@ fn scan() -> Option<Box<dyn SerialPort>> {
         let message = String::from_utf8(result).expect("[LOG] Menor poslal nejakou bejkarnu");
 
         if message == "csmoravak" {
-            port.set_timeout(Duration::from_millis(10000)).expect("[LOG] Unable to set timeout");
             return Some(port);
         }
     }
