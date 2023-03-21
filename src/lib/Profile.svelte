@@ -111,7 +111,10 @@
                 </div>
             {/if}
     </div>
-    <div class="w-3/6 xl:w-2/6"><Lamp top={modes["top"][top.mode][1]} bottom={modes["bottom"][bottom.mode][1]} topColor={top.color} bottomColor={bottom.color} topSpeed={top.speed} bottomSpeed={bottom.speed} topBrightness={top.brightness} bottomBrightness={bottom.brightness}></Lamp></div>
+    <div class="w-3/6 xl:w-2/6">
+        <Lamp top={modes["top"][top.mode][1]} bottom={modes["bottom"][bottom.mode][1]} topColor={top.color} bottomColor={bottom.color} topSpeed={top.speed} bottomSpeed={bottom.speed} topBrightness={top.brightness} bottomBrightness={bottom.brightness}></Lamp>
+        Rychlost, vzhled a barva efektu jsou orientační a nemusí odpovídat skutečnému vzhledu.
+    </div>
     <div class="gap-4 flex flex-col">
         {#if hasColor(top.mode)}
             <ColorPicker bind:hex={top.color} label="Barva horní zóny"/>
@@ -120,5 +123,5 @@
             <ColorPicker bind:hex={bottom.color} label="Barva spodní zóny"/>
         {/if}
     </div>
-    <div class="button unselected fixed bottom-0 right-0 m-8" on:click={() => upload()}>Nahrát</div>
+    <div class="button unselected fixed bottom-0 right-0 m-8" on:click={() => upload()}>Potvrdit</div>
 </div>
