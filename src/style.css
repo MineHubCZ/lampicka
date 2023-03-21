@@ -19,3 +19,7 @@
     @apply bg-primary rounded-full shadow-xl;
     outline: none;
 }
+
+.color {
+    @apply border-2 border-primary;
+}
