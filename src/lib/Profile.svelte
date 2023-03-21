@@ -32,23 +32,29 @@
             "r":  ["Duhový", Rainbow],
             "rg": ["Duhový přechod", RainbowGrad],
             "w":  ["Vlna", Wave],
-            "rw": ["Duhova vlna", RainbowWave],
+            "rw": ["Duhová vlna", RainbowWave],
             "b":  ["Breathing", Breathing],
-            "rb": ["Duhovy breathing", RainbowBreathing],
+            "rb": ["Duhový breathing", RainbowBreathing],
         },
         "bottom": {
             "s":  ["Statický", StaticB],
             "r":  ["Duhový", RainbowB],
             "rg": ["Duhový přechod", RainbowGradB],
             "w":  ["Vlna", WaveB],
-            "rw": ["Duhova vlna", RainbowWaveB],
+            "rw": ["Duhová vlna", RainbowWaveB],
             "b":  ["Breathing", BreathingB],
-            "rb": ["Duhovy breathing", RainbowBreathingB],
+            "rb": ["Duhový breathing", RainbowBreathingB],
         },
     };
 
     async function upload() {
+        console.log(viceVersa(id, top, bottom));
         let result = await invoke("write", { setting: viceVersa(id, top, bottom) })
+    }
+
+    function sync() {
+        bottom.speed = top.speed;
+        // todo reset
     }
 </script>
 <div class="border-2 border-primary flex p-5 h-full gap-16 justify-center items-center">
@@ -66,12 +72,12 @@
                 {/each}    
             </div>
             <div class="flex flex-col">
-                jas
+                Jas
                 <input type="range" class="slide" bind:value={top.brightness} min="0" max="255">
             </div>
             {#if hasSpeed(top.mode)}
                 <div class="flex flex-col">
-                    rychlost
+                    Rychlost
                     <input type="range" class="slide" bind:value={top.speed} min="1" max="255">
                 </div>
             {/if}
@@ -89,30 +95,30 @@
                 {/each}    
             </div>
             <div class="flex flex-col">
-                jas
+                Jas
                 <input type="range" class="slide" bind:value={bottom.brightness} min="0" max="255">
             </div>
             {#if hasSpeed(bottom.mode)}
                 <div class="flex flex-col">
-                    rychlost
+                    Rychlost
                     <input type="range" class="slide" bind:value={bottom.speed} min="1" max="255">
                 </div>
             {/if}
         </div>
             {#if hasSpeed(bottom.mode) && hasSpeed(top.mode)}
                 <div class="flex flex-col">
-                    <button on:click={() => bottom.speed = top.speed} class="button unselected">Synchronizovat</button>
+                    <button on:click={sync} class="button unselected">Synchronizovat</button>
                 </div>
             {/if}
     </div>
     <div class="w-3/6 xl:w-2/6"><Lamp top={modes["top"][top.mode][1]} bottom={modes["bottom"][bottom.mode][1]} topColor={top.color} bottomColor={bottom.color} topSpeed={top.speed} bottomSpeed={bottom.speed} topBrightness={top.brightness} bottomBrightness={bottom.brightness}></Lamp></div>
     <div class="gap-4 flex flex-col">
         {#if hasColor(top.mode)}
-            <ColorPicker bind:hex={top.color} label="Barva horni zony"/>
+            <ColorPicker bind:hex={top.color} label="Barva horní zóny"/>
         {/if}
         {#if hasColor(bottom.mode)}
-            <ColorPicker bind:hex={bottom.color} label="Barva spodni zony"/>
+            <ColorPicker bind:hex={bottom.color} label="Barva spodní zóny"/>
         {/if}
     </div>
-    <div class="button unselected fixed bottom-0 right-0 m-8" on:click={() => upload()}>Nahrat</div>
+    <div class="button unselected fixed bottom-0 right-0 m-8" on:click={() => upload()}>Nahrát</div>
 </div>

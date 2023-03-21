@@ -44,6 +44,7 @@ function parseMode(mode: string, brightness: number, data: string): Mode {
             mode,
             brightness,
             color: "#" + data,
+            speed: 125,
         };
     }
 
@@ -51,6 +52,7 @@ function parseMode(mode: string, brightness: number, data: string): Mode {
         return {
             mode,
             brightness,
+            color: "#ffffff",
             speed: data,
         }
     }
@@ -62,10 +64,10 @@ export function viceVersa(id: number, top: Mode, bottom: Mode): string {
 
 export function exportMode(mode: Mode): string {
     let data;
-    if (hasSpeed(mode) && hasColor(mode)) {
+    if (hasSpeed(mode.mode) && hasColor(mode.mode)) { 
         data = mode.speed + "," + mode.color.replace("#", "");
     } else {
-        data = mode.speed ?? mode.color.replace("#", "");
+        data = hasSpeed(mode.mode) ? mode.speed : mode.color.replace("#", "");
     }
 
     return [mode.mode, mode.brightness, data].join(";");
