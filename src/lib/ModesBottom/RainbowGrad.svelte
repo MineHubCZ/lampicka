@@ -40,11 +40,11 @@ $: {
 </script>
 <defs>
     <linearGradient id="bottomGradient">
-        <stop offset="0%" stop-color="{color1}">
+        <stop offset="0%" stop-color="{color3}">
         </stop>
         <stop offset="50%" stop-color="{color2}">
         </stop>
-        <stop offset="100%" stop-color="{color3}">
+        <stop offset="100%" stop-color="{color1}">
         </stop>
     </linearGradient>
 </defs>

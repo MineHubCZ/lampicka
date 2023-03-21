@@ -1,4 +1,4 @@
-export function rainbow(red, green, blue) {
+export function rainbow(red: number, green: number, blue: number): [number, number, number] {
     if (red == 255) {
         if (blue == 0 && green < 255) {
             return [red, ++green, blue];   

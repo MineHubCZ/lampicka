@@ -12,13 +12,13 @@
 
     async function load() {
         profiles = await invoke("connect");
-//        profiles = [
-//            "1;s;255;ffff00;r;255;10;",
-//            "1;s;255;ffffff;r;255;10;",
-//            "5;r;255;50;rw;255;50;",
-//            "5;r;255;50;rw;255;50;",
-//            "3;w;255;204466ff;rg;255;5",
-//        ]
+        profiles = [
+            "1;s;255;ffff00;r;255;10;",
+            "1;s;255;ffffff;r;255;10;",
+            "5;r;255;50;rw;255;50;",
+            "5;r;255;50;rw;255;50;",
+            "3;w;255;204466ff;rg;255;5",
+        ]
         component =
             profiles
             ? Main
