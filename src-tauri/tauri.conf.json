@@ -7,8 +7,8 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "Lamp",
-    "version": "0.1.7"
+    "productName": "MineHub Lampicka",
+    "version": "0.5.0"
   },
   "tauri": {
     "allowlist": {
@@ -56,12 +56,12 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
-        "minHeight": 600,
+        "height": 800,
+        "minHeight": 800,
         "resizable": true,
-        "title": "Lamp",
-        "width": 800,
-        "minWidth": 800
+        "title": "Minehub Lampicka",
+        "width": 1200,
+        "minWidth": 1200
       }
     ]
   }
