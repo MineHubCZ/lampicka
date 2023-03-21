@@ -7,7 +7,7 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "lampicka",
+    "productName": "Lampička",
     "version": "0.1.7"
   },
   "tauri": {
@@ -59,7 +59,7 @@
         "height": 600,
         "minHeight": 600,
         "resizable": true,
-        "title": "lampicka",
+        "title": "Lampička",
         "width": 800,
         "minWidth": 800
       }
