@@ -1,3 +1,7 @@
+<script>
+    export let retry;
+</script>
+
 <div class="flex justify-center items-center h-screen flex-col">
     Hledání lampičky...
     <div class="animate-spin">
@@ -6,4 +10,8 @@
           <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
         </svg>
     </div>
+    {#if retry}
+        Hledání lampičky selhalo.
+        <button on:click={retry} class="bg-primary text-white rounded-md px-4 py-2 mt-4">Zkusit znovu</button>
+    {/if}
 </div>
