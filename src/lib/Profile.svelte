@@ -48,8 +48,10 @@
     };
 
     async function upload() {
-        console.log(viceVersa(id, top, bottom));
         let result = await invoke("write", { setting: viceVersa(id, top, bottom) })
+        if (!result) {
+            alert("Nepodařilo se nahrát data do lampičky. Zkontroluj, zda je zapojená, případně se na nás obrať v ticketech na discordu.")
+        }
     }
 
     function sync() {
