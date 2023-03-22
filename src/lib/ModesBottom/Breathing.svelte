@@ -8,7 +8,7 @@ let i;
 $: {
     clearInterval(i);
     i = setInterval(function() {
-        if (state == 180) {
+        if (state == 360) {
             state = 0;
             return;
         }

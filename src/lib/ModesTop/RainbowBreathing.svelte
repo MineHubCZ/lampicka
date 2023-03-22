@@ -12,7 +12,7 @@ $: {
     clearInterval(i);
     i = setInterval(function() {
         [red, green, blue] = rainbow(red, green, blue)
-        if (state == 180) {
+        if (state == 360) {
             state = 0;
             return;
         }
